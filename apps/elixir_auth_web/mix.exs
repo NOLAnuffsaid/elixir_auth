@@ -43,7 +43,9 @@ defmodule UserAuthWeb.MixProject do
       {:gettext, "~> 0.11"},
       {:elixir_auth, in_umbrella: true},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:wallaby, "~> 0.23", only: [:test]},
+      {:stream_data, "~> 0.4", only: [:test]}
     ]
   end
 
