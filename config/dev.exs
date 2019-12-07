@@ -56,4 +56,7 @@ config :phoenix, :plug_init_mode, :runtime
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-config :mix_test_watch, tasks: ["format", "test", "credo --strict"]
+config :mix_test_watch,
+  tasks: ["format", "test", "credo --strict"],
+  clear: true,
+  exclude: [~r/apps\/*\/test\/support\//]

@@ -3,7 +3,7 @@
     %{
       name: "default",
       files: %{
-        included: ["lib/", "test/"],
+        included: ["apps/*/lib/", "apps/*/test/"],
         excluded: []
       },
       checks: [

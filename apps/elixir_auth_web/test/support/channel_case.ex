@@ -15,6 +15,8 @@ defmodule UserAuthWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       # Import conveniences for testing with channels
@@ -26,10 +28,10 @@ defmodule UserAuthWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(UserAuth.Repo)
+    :ok = Sandbox.checkout(UserAuth.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(UserAuth.Repo, {:shared, self()})
+      Sandbox.mode(UserAuth.Repo, {:shared, self()})
     end
 
     :ok

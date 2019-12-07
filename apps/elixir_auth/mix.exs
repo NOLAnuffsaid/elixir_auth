@@ -39,6 +39,8 @@ defmodule UserAuth.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.0"},
+      {:pbkdf2_elixir, "~> 1.0"},
+      {:faker, "~> 0.13.0", only: [:dev, :test]},
       {:stream_data, "~> 0.4", only: [:test]}
     ]
   end
