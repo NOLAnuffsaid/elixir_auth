@@ -5,7 +5,15 @@ defmodule UserAuthWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", UserAuthWeb do
+  scope "/" do
     pipe_through :api
+
+    forward "/api", Absinthe.Plug, schema: UserAuthWeb.Schema
+
+    unless Mix.env() == :prod do
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+        schema: UserAuthWeb.Schema,
+        interface: :simple
+    end
   end
 end

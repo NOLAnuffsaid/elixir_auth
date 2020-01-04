@@ -24,7 +24,7 @@ defmodule UserAuthWeb.MixProject do
   def application do
     [
       mod: {UserAuthWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :absinthe_plug]
     ]
   end
 
@@ -44,6 +44,8 @@ defmodule UserAuthWeb.MixProject do
       {:elixir_auth, in_umbrella: true},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
       {:stream_data, "~> 0.4", only: [:test]}
     ]
   end
