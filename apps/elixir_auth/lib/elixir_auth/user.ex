@@ -9,8 +9,6 @@ defmodule UserAuth.User do
   Schema to define a user struct
   """
 
-  require IEx
-
   schema "users" do
     field :email, :string
     field :password_hash, :string
@@ -18,24 +16,26 @@ defmodule UserAuth.User do
   end
 
   def changeset(%User{} = user, %{password: password} = params)
-      when is_binary(password) and bit_size(password) > 0 do
-    user
-    |> cast(params, [:email, :name], [])
-    |> put_hashed_password(password)
-    |> validate_required([:email, :password_hash])
-    |> validate_format(:email, ~r/\S@\w.\w/)
-    |> unique_constraint(:email)
-  end
+    when is_binary(password) and bit_size(password) > 0,
+    do:
+      user
+      |> cast(params, [:email, :name], [])
+      |> put_hashed_password(password)
+      |> validate_required([:email, :password_hash])
+      |> validate_format(:email, ~r/\S@\w.\w/)
+      |> unique_constraint(:email)
 
   def changeset(%User{} = user, _),
-    do: user |> change() |> add_error(:password_hash, "password required")
+    do:
+      user
+      |> change()
+      |> add_error(:password_hash, "password required")
 
-  defp put_hashed_password(
-         %Ecto.Changeset{valid?: true} = changeset,
-         password
-       ) do
-    put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(password))
-  end
+  def changeset(_, _), do: {:error, :invalidargs}
+
+  defp put_hashed_password(%Ecto.Changeset{valid?: true} = changeset,
+                           password),
+    do: put_change(changeset, :password_hash, Pbkdf2.hash_pwd_salt(password))
 
   defp put_hashed_password(changeset, _), do: changeset
 end

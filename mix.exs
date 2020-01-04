@@ -24,7 +24,6 @@ defmodule UserAuth.Umbrella.MixProject do
   defp deps do
     [
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
-      {:ex_guard, "~> 1.1.1", only: :dev},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:distillery, "~> 2.0"}
     ]
