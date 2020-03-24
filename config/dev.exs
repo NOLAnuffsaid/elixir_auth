@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :elixir_auth, UserAuth.Repo,
   username: System.get_env("ELIXIR_DB_USER"),
-  password: System.get_env("ELIXIR_DB_PW"),
+  password: System.get_env("DB_PW"),
   database: "elixir_auth_dev",
-  hostname: "localhost",
+  hostname: System.get_env("HOST_IP"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

@@ -18,9 +18,12 @@ defmodule UserAuthWeb.Resolvers do
       |> UserAuth.user_login()
       |> handle_login_error()
 
-  defp handle_create_error({:ok, user}), do: user
+  def user_login(_, _, _),
+    do: {:error, :invalidargs}
+
+  defp handle_create_error({:ok, _} = result), do: result
   defp handle_create_error(error), do: error
 
-  defp handle_login_error({:ok, user}), do: user
-  defp handle_login_error({:error, err} = errors), do: errors
+  defp handle_login_error({:ok, _} = result), do: result
+  defp handle_login_error({:error, _err} = errors), do: errors
 end

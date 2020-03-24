@@ -22,7 +22,7 @@ config :elixir_auth_web,
 # Configures the endpoint
 config :elixir_auth_web, UserAuthWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "lItM/zs9pLVihZIEzl9lw05bsq759/JY0mPtEp5y59UyFQXmowmVL4JJc0O5HJuG",
+  secret_key_base: System.get_env("APP_SECRET"),
   render_errors: [view: UserAuthWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: UserAuthWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
