@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+psql -U postgres <<-EOSQL
+  CREATE USER $ELIXIR_DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW';
+EOSQL

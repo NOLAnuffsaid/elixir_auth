@@ -10,8 +10,17 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :elixir_auth_web, UserAuthWeb.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  http: [:inet6, port: System.get_env("PORT") || 4000],
+  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 80],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  server: true,
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
+
+config :elixir_auth, UserAuth.Repo,
+  url: System.get_env("DATABASE_URL")
+  database: "",
+  ssl: true,
+  pool_size: 2
 
 # ## SSL Support
 #
@@ -49,7 +58,3 @@ config :elixir_auth_web, UserAuthWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
-
-# Finally import the config/prod.secret.exs which loads secrets
-# and configuration from environment variables.
-import_config "prod.secret.exs"

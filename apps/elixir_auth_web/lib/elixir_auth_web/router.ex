@@ -10,10 +10,8 @@ defmodule UserAuthWeb.Router do
 
     forward "/api", Absinthe.Plug, schema: UserAuthWeb.Schema
 
-    unless Mix.env() == :prod do
-      forward "/graphiql/user", Absinthe.Plug.GraphiQL,
-        schema: UserAuthWeb.Schema,
-        interface: :simple
-    end
+    forward "/graphiql/user", Absinthe.Plug.GraphiQL,
+      schema: UserAuthWeb.Schema,
+      interface: :simple
   end
 end

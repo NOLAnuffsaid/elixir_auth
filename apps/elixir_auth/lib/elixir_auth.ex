@@ -30,7 +30,7 @@ defmodule UserAuth do
   defp handle_insert_error({:ok, _} = user),
     do: user
 
-  defp handle_insert_error({:error, %Ecto.Changeset{errors: errs} = chst}),
+  defp handle_insert_error({:error, %Ecto.Changeset{errors: errs}}),
     do: {:error, sanitize_errors(errs)}
 
   defp sanitize_errors(errors),
@@ -42,7 +42,7 @@ defmodule UserAuth do
       end)
 
   def user_login(%{:email => email, :password => password})
-    when byte_size(password) > 0,
+    when byte_size(email) > 0 and byte_size(password) > 0,
     do:
       User
       |> Repo.get_by([email: email], log: false)

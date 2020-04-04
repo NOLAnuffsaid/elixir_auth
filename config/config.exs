@@ -21,7 +21,7 @@ config :elixir_auth_web,
 
 # Configures the endpoint
 config :elixir_auth_web, UserAuthWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("HOST_IP")],
   secret_key_base: System.get_env("APP_SECRET"),
   render_errors: [view: UserAuthWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: UserAuthWeb.PubSub, adapter: Phoenix.PubSub.PG2]
