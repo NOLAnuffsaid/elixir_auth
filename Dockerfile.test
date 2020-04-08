@@ -15,4 +15,4 @@ COPY . /home/wjmill/app
 
 WORKDIR /home/wjmill/app
 
-ENTRYPOINT sh ./start.sh
+ENTRYPOINT sh mix test
