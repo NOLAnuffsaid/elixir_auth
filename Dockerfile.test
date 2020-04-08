@@ -5,7 +5,7 @@ ARG DB_PW
 
 RUN apt-get update -y
 RUN apt-get install -y postgresql postgresql-contrib
-RUN pg_ctl start -l /tmp/pg_logfile && sleep 8 && psql -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
+RUN postgres -D /tmp/pg_data -l /tmp/pg_logfile && sleep 8 && psql -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
 
 RUN adduser -D -g "" wjmill
 
