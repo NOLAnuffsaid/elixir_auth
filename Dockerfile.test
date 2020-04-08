@@ -5,7 +5,6 @@ ARG DB_PW
 
 RUN apt-get update -y \
   && apt-get install -y postgresql postgresql-contrib \
-  && pg_ctlcluster 11 main start \
 
 USER postgres
 
