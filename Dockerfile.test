@@ -3,13 +3,12 @@ FROM elixir:1.10
 ARG DB_USER
 ARG DB_PW
 
-RUN adduser -D -g "" postgres \
-    && apt-get update -y \
+RUN apt-get update -y \
     && apt-get install -y postgresql postgresql-contrib \
     && sleep 3 \
     && pg_ctlcluster 11 main start \
     && sleep 8 \
-    && psql -U postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
+    && psql --host=localhost --username=postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
 
 RUN adduser -D -g "" wjmill
 
