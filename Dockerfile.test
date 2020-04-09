@@ -4,9 +4,11 @@ ARG DB_USER
 ARG DB_PW
 
 RUN apt-get update -y \
-    && apt-get install -y postgresql postgresql-contrib \
-    && sleep 3 \
-    && pg_ctlcluster 11 main start \
+    && apt-get install -y postgresql postgresql-contrib
+
+USER postgres
+
+RUN pg_ctlcluster 11 main start \
     && sleep 8 \
     && su - postgres \
     && whoami \
