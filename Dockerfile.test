@@ -10,9 +10,7 @@ RUN apt-get update -y \
     && sleep 8 \
     && su - postgres \
     && psql -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'" \
-
-
-RUN adduser -D -g "" wjmill
+    && adduser wjmill
 
 USER wjmill
 
