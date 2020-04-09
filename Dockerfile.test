@@ -8,8 +8,9 @@ RUN apt-get update -y \
     && sleep 3 \
     && pg_ctlcluster 11 main start \
     && sleep 8 \
-    && cat /etc/posgresql/11/main/pg_hba.conf \
-    && psql --username=postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
+    && su - postgres \
+    && psql -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'" \
+
 
 RUN adduser -D -g "" wjmill
 
