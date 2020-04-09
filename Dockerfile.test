@@ -9,6 +9,7 @@ RUN apt-get update -y \
     && pg_ctlcluster 11 main start \
     && sleep 8 \
     && su - postgres \
+    && echo whoami
     && psql -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
 
 
