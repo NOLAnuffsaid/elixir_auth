@@ -3,10 +3,6 @@ FROM elixir:1.10
 ARG DB_USER
 ARG DB_PW
 
-RUN adduser postgres
-
-USER postgres
-
 RUN apt-get update -y \
     && apt-get install -y postgresql postgresql-contrib \
     && su - postgres \
