@@ -9,6 +9,7 @@ USER postgres
 
 RUN apt-get update -y \
     && apt-get install -y postgresql postgresql-contrib \
+    && su - postgres \
     && sleep 3 \
     && pg_ctlcluster 11 main start \
     && sleep 8 \
