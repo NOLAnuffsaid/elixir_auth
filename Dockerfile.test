@@ -9,9 +9,6 @@ RUN pg_ctlcluster 11 main start \
     && sleep 8 \
     && psql -U postgres -c "CREATE USER elixirapps WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'widner'"
 
-
-RUN useradd -D -g "" wjmill
-
 USER wjmill
 
 COPY . /home/wjmill/app
