@@ -11,7 +11,7 @@ RUN pg_ctlcluster 11 main start \
 
 USER root
 
-RUN more /etc/passwd
+RUN useradd -d /home/wjmill -g 1000 wjmill
 
 USER wjmill
 
