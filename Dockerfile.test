@@ -19,4 +19,4 @@ COPY . /home/wjmill/app
 
 WORKDIR /home/wjmill/app
 
-ENTRYPOINT sh mix test
+ENTRYPOINT sh start_tests.sh
