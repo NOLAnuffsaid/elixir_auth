@@ -5,9 +5,12 @@ RUN apt-get update -y \
 
 USER postgres
 
+ARG DB_USER=testuser
+ARG DB_PW=widnertest
+
 RUN pg_ctlcluster 11 main start \
     && sleep 8 \
-    && psql -U postgres -c "CREATE USER elixirapps WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'widner'"
+    && psql -U postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'DB_PW'"
 
 USER root
 
