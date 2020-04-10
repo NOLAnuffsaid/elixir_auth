@@ -6,3 +6,5 @@ RUN apt-get update -y \
 COPY . /opt/app
 
 WORKDIR /opt/app
+
+ENTRYPOINT sh start_tests.sh
