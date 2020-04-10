@@ -8,6 +8,9 @@ USER postgres
 ARG DB_USER=testuser
 ARG DB_PW=widnertest
 
+ENV ELIXIR_DB_USER="$DB_USER""
+ENV DB_PW="$DB_PW"
+
 RUN pg_ctlcluster 11 main start \
     && sleep 8 \
     && psql -U postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD 'DB_PW'"
