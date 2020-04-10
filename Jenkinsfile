@@ -8,9 +8,13 @@ pipeline {
   stages {
     stage('Tests') {
       steps {
-        sh 'echo "Test ran..."'
-        junit '/tmp/*.xml'
+        echo "Successful build!"
       }
+    }
+  }
+  post {
+    always {
+      junit '/tmp/*.xml'
     }
   }
 }
