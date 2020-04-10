@@ -2,12 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :elixir_auth, UserAuth.Repo,
-  #  username: System.get_env("ELIXIR_DB_USER"),
-  #  password: System.get_env("DB_PW"),
-  #  database: "elixir_auth_test",
-  #  hostname: "localhost",
-  url:
-    "postgres://#{System.get_env("ELIXIR_DB_USER")}:#{System.get_env("DB_PW")}@localhost:5432/elixir_auth_test",
+  username: System.get_env("ELIXIR_DB_USER"),
+  password: System.get_env("DB_PW"),
+  database: "elixir_auth_test",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

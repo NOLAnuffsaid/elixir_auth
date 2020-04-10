@@ -8,6 +8,6 @@ mix format --check-formatted
 
 mix credo --strict
 
-mix do ecto.create, ecto.migrate, test --trace
+MIX_ENV=test mix do ecto.create, ecto.migrate, test --trace
 
 # mix dialyzer
