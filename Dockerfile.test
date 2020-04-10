@@ -8,7 +8,7 @@ USER postgres
 ARG DB_USER=testuser
 ARG DB_PW=widnertest
 
-ENV ELIXIR_DB_USER="$DB_USER""
+ENV ELIXIR_DB_USER="$DB_USER"
 ENV DB_PW="$DB_PW"
 
 RUN pg_ctlcluster 11 main start \
