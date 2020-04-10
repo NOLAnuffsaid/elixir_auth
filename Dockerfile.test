@@ -19,4 +19,6 @@ COPY . /home/wjmill/app
 
 WORKDIR /home/wjmill/app
 
+USER jenkins
+
 ENTRYPOINT sh start_tests.sh
