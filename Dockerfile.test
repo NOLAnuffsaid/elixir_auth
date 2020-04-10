@@ -11,12 +11,8 @@ RUN pg_ctlcluster 11 main start \
 
 USER root
 
-RUN useradd -d /home/wjmill -g 110 wjmill
+COPY . /opt/app
 
-USER wjmill
-
-COPY . /home/wjmill/app
-
-WORKDIR /home/wjmill/app
+WORKDIR /opt/app
 
 ENTRYPOINT sh start_tests.sh
