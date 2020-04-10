@@ -1,7 +1,7 @@
 pipeline {
   agent {
     dockerfile {
-      filename 'Dockerfile.test'
+      filename './Dockerfile.test'
       args '--name docker-update_$(date "+%j_%H.%M.%S")'
     }
   }
