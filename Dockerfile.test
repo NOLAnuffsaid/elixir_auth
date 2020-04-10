@@ -6,7 +6,3 @@ RUN apt-get update -y \
 COPY . /opt/app
 
 WORKDIR /opt/app
-
-RUN mix do local.hex --force, local.rebar --force, deps.get
-
-ENTRYPOINT sh start_tests.sh

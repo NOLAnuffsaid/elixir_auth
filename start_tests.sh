@@ -2,6 +2,8 @@
 
 set -e
 
+mix do local.hex --force, local.rebar --force
+
 pg_ctlcluster 11 main start
 
 sleep 8
