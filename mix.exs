@@ -26,7 +26,10 @@ defmodule UserAuth.Umbrella.MixProject do
       {:credo, "~> 1.1", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:distillery, "~> 2.0"},
-      {:junit_formatter, git: "https://github.com/NOLAnuffsaid/junit-formatter.git", branch: "time-format-correction", only: [:test]}
+      {:junit_formatter,
+       git: "https://github.com/NOLAnuffsaid/junit-formatter.git",
+       branch: "time-format-correction",
+       only: [:test]}
     ]
   end
 end
