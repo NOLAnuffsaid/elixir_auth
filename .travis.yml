@@ -1,0 +1,17 @@
+language: elixir
+
+elixir:
+  - 1.9
+  - 1.10
+
+otp_release:
+  - 20.0
+  - 21.0
+
+script:
+  - mix compile --force --warning-as-errors
+  - format --check-formatted
+  - credo --strict
+  - ecto.create
+  - ecto.migrate
+  - test --trace
