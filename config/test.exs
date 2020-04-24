@@ -5,7 +5,8 @@ config :elixir_auth, UserAuth.Repo,
   username: System.get_env("ELIXIR_DB_USER"),
   password: System.get_env("DB_PW"),
   database: "elixir_auth_test",
-  hostname: "localhost",
+  hostname: "127.0.0.1",
+  port: 5432,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
