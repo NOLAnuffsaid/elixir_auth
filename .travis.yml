@@ -15,8 +15,8 @@ before_script:
   - psql -U postgres -c "CREATE USER $ELIXIR_DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
 script:
   - mix compile --force --warning-as-errors
-  - format --check-formatted
-  - credo --strict
-  - ecto.create
-  - ecto.migrate
-  - test --trace
+  - mix format --check-formatted
+  - mix credo --strict
+  - mix ecto.create
+  - mix ecto.migrate
+  - mix test --trace
