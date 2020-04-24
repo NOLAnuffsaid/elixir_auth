@@ -25,6 +25,6 @@ script:
   - mix compile --force --warning-as-errors
   - mix format --check-formatted
   - mix credo --strict
-  - mix ecto.create
-  - mix ecto.migrate
+  - MIX_ENV=test mix ecto.create
+  - MIX_ENV=test mix ecto.migrate
   - mix test --trace
