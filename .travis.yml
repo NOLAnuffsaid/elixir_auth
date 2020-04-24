@@ -12,7 +12,7 @@ otp_release:
 jobs:
   exclude:
   - elixir: 1.10
-    opt_release: 20.0
+    otp_release: 20.0
 
 services:
   - postgresql
@@ -22,9 +22,4 @@ before_script:
 
 script:
   - mkdir tmp
-  - mix compile --force --warning-as-errors
-  - mix format --check-formatted
-  - mix credo --strict
-  - MIX_ENV=test mix ecto.create
-  - MIX_ENV=test mix ecto.migrate
-  - mix test --trace
+  - MIX_ENV=test mix do format --check-formatted, credo --strict, mix ecto.create, mix ecto.migrate, test --trace
