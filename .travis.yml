@@ -22,4 +22,4 @@ before_script:
 
 script:
   - mkdir tmp
-  - MIX_ENV=test mix do format --check-formatted, credo --strict, mix ecto.create, mix ecto.migrate, test --trace
+  - MIX_ENV=test mix do format --check-formatted, credo --strict, ecto.create, ecto.migrate, test --trace
