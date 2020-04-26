@@ -7,10 +7,12 @@ defmodule UserAuthTest do
 
   describe "valid params" do
     property " will successfully create an account" do
-      check all email <- gen_email(),
-                name <- StreamData.string(:alphanumeric, max_length: 20),
-                password <- StreamData.string(:alphanumeric, min_length: 5, max_length: 20),
-                password != "" do
+      check all(
+              email <- gen_email(),
+              name <- StreamData.string(:alphanumeric, max_length: 20),
+              password <- StreamData.string(:alphanumeric, min_length: 5, max_length: 20),
+              password != ""
+            ) do
         params = %{email: email, password: password, name: name}
         assert {:ok, _} = params |> UserAuth.create_user()
       end
@@ -36,9 +38,11 @@ defmodule UserAuthTest do
   end
 
   defp gen_email do
-    gen all user <- StreamData.string(:alphanumeric, min_length: 2, max_length: 20),
-            host <- StreamData.member_of(@hosts),
-            domain <- StreamData.member_of(@domains) do
+    gen all(
+          user <- StreamData.string(:alphanumeric, min_length: 2, max_length: 20),
+          host <- StreamData.member_of(@hosts),
+          domain <- StreamData.member_of(@domains)
+        ) do
       "#{user}@#{host}.#{domain}"
     end
   end

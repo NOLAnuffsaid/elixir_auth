@@ -12,11 +12,11 @@ defmodule UserAuth do
   alias UserAuth.{Repo, User}
 
   def create_user(params)
-    when is_map(params),
-    do:
-      params
-      |> insert_user()
-      |> handle_insert_error()
+      when is_map(params),
+      do:
+        params
+        |> insert_user()
+        |> handle_insert_error()
 
   def create_user(_),
     do: {:error, :invalidarg}
@@ -42,11 +42,11 @@ defmodule UserAuth do
       end)
 
   def user_login(%{:email => email, :password => password})
-    when byte_size(password) > 0,
-    do:
-      User
-      |> Repo.get_by([email: email], log: false)
-      |> verify_password(password)
+      when byte_size(password) > 0,
+      do:
+        User
+        |> Repo.get_by([email: email], log: false)
+        |> verify_password(password)
 
   def user_login(_),
     do: {:error, :invalidarg}
