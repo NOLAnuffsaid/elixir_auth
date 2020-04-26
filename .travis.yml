@@ -1,0 +1,25 @@
+language: elixir
+
+elixir:
+  - 1.9
+  - 1.10
+
+otp_release:
+  - 20.0
+  - 21.0
+  - 22.0
+
+jobs:
+  exclude:
+  - elixir: 1.10
+    otp_release: 20.0
+
+services:
+  - postgresql
+
+before_script:
+  - psql -U postgres -c "CREATE USER $ELIXIR_DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
+
+script:
+  - mkdir tmp
+  - MIX_ENV=test mix do format --check-formatted, credo --strict, ecto.create, ecto.migrate, test --trace

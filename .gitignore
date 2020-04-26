@@ -22,3 +22,5 @@ erl_crash.dump
 # PERSONAL IGNORE FILES
 .app_exports
 .elixir_ls/
+/tmp/
+*.xml

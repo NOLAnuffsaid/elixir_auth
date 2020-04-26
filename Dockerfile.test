@@ -1,0 +1,26 @@
+FROM elixir:1.10
+
+RUN apt-get update -y \
+    && apt-get install -y postgresql postgresql-contrib
+
+USER postgres
+
+ARG DB_USER=testuser
+ARG DB_PW=widnertest
+
+ENV ELIXIR_DB_USER="$DB_USER"
+ENV DB_PW="$DB_PW"
+
+RUN pg_ctlcluster 11 main start \
+    && sleep 8 \
+    && psql -U postgres -c "CREATE USER $DB_USER WITH CREATEDB LOGIN ENCRYPTED PASSWORD '$DB_PW'"
+
+USER root
+
+COPY . /opt/app
+
+WORKDIR /opt/app
+
+RUN mix do local.hex --force, local.rebar --force, deps.get
+
+ENTRYPOINT sh start_tests.sh
