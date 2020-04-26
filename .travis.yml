@@ -22,4 +22,7 @@ before_script:
 
 script:
   - mkdir tmp
-  - MIX_ENV=test mix do format --check-formatted, credo --strict, ecto.create, ecto.migrate, test --trace
+  - &common_test_script MIX_ENV=test mix do format --check-formatted, credo --strict, ecto.create, ecto.migrate, test --trace
+  - git checkout master && git checkout -b test_master && git merge $TRAVIS_PULL_REQUEST_BRANCH
+  - mkdir tmp
+  - *common_test_script
